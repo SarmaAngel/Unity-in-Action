@@ -5,6 +5,7 @@ using UnityEngine;
 public class RayShooter : MonoBehaviour
 {
     private Camera cam;
+    //words
 
     void Start()
     {
