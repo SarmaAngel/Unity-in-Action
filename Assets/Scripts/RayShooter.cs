@@ -5,7 +5,8 @@ using UnityEngine;
 public class RayShooter : MonoBehaviour
 {
     private Camera cam;
-    //words
+    private RaycastHit hit;
+    // Start is called before the first frame update
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class RayShooter : MonoBehaviour
         float posY = cam.pixelHeight / 2 - size / 2;
 
         GUI.Label(new Rect(posX, posY, size, size), "*");
+        GUI.Label(new Rect((posX)-100, posY, size, size), hit.point.ToString());
     }
 
     void Update()
@@ -31,7 +33,6 @@ public class RayShooter : MonoBehaviour
         {
             Vector3 point = new Vector3(cam.pixelWidth/2, cam.pixelHeight/2, 0);
             Ray ray = cam.ScreenPointToRay(point);
-            RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
             {
@@ -45,6 +46,8 @@ public class RayShooter : MonoBehaviour
                 {
                  StartCoroutine(SphereIndicator(hit.point));
                 }
+
+                //Debug.Log ("Hit " + hit.point);
             }
         }
     }
